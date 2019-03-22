@@ -9,6 +9,27 @@ The module moves javascripts to the bottom of the page.
 ![Packagist](https://img.shields.io/packagist/vpre/hryvinskyi/magento2-deferjs.svg)
 ![Packagist](https://img.shields.io/packagist/l/hryvinskyi/magento2-deferjs.svg)
 
+# Installation Guide
+### Install by composer
+````
+composer require hryvinskyi/magento2-deferjs
+bin/magento module:enable Hryvinskyi_Base
+bin/magento module:enable Hryvinskyi_DeferJs
+bin/magento setup:upgrade
+````
+### Install download package
+1. Download module https://github.com/hryvinskyi/magento2-base "Clone or download -> Download Zip" 
+2. Download this module "Clone or download -> Download Zip"
+3. Unzip two modules in the folder app\code\Hryvinskyi\Base and app\code\Hryvinskyi\DeferJs
+4. Run commands:
+
+```
+bin/magento module:enable Hryvinskyi_Base
+bin/magento module:enable Hryvinskyi_DeferJs
+bin/magento setup:upgrade
+```
+5. Configure module in admin panel
+
 # General Settings
 To get the access to the 'Defer JavaScripts' settings please go to
 Stores -> Configuration -> Hryvinskyi Extensions -> Defer JavaScripts and expand the General Settings section.
