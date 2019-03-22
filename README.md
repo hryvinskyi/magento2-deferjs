@@ -35,5 +35,5 @@ To get the access to the 'Defer JavaScripts' settings please go to
 Stores -> Configuration -> Hryvinskyi Extensions -> Defer JavaScripts and expand the General Settings section.
 
 ***Enabled deferred javascript:*** Enable or disable the extension from here.  
-***Disable move attribute:*** Enter the attribute that will block the move of the script to the bottom.
-***Enabled minify body scripts:*** Enable script minification.
+***Disable move attribute:*** Enter the attribute that will block the move of the script to the bottom.  
+***Enabled minify body scripts:*** Enable script minification.  
