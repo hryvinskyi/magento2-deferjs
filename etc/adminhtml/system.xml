@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Copyright (c) 2019. Volodymyr Hryvinskyi.  All rights reserved.
+  ~ @author: <mailto:volodymyr@hryvinskyi.com>
+  ~ @github: <https://github.com/hryvinskyi>
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="hryvinskyi_defer_js" showInDefault="1" showInWebsite="1" sortOrder="10" translate="label">
+            <label>Defer JavaScripts</label>
+            <tab>hryvinskyi</tab>
+            <resource>Hryvinskyi_DeferJs::defer_js</resource>
+            <group id="general" showInDefault="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>General Settings</label>
+                <field id="enabled" showInDefault="1" showInWebsite="1" sortOrder="20" translate="label" type="select">
+                    <label>Enabled deferred javascript</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="disable_attribute" showInDefault="1" showInWebsite="1" sortOrder="30" translate="label"
+                       type="text">
+                    <label>Disable move attribute</label>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="minify_body_scripts" showInDefault="1" showInWebsite="1" sortOrder="30"
+                       translate="label comment" type="select">
+                    <label>Enabled minify body scripts</label>
+                    <comment>Only JavaScript in the body of the page</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

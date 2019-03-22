@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) 2019. Volodymyr Hryvinskyi.  All rights reserved.
+  ~ @author: <mailto:volodymyr@hryvinskyi.com>
+  ~ @github: <https://github.com/hryvinskyi>
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <hryvinskyi_defer_js>
+            <general>
+                <enabled>0</enabled>
+                <disable_attribute><![CDATA[data-deferjs="false"]]></disable_attribute>
+                <minify_body_scripts>0</minify_body_scripts>
+            </general>
+        </hryvinskyi_defer_js>
+    </default>
+</config>
