@@ -7,7 +7,6 @@
 
 declare(strict_types=1);
 
-
 namespace Hryvinskyi\DeferJs\Model;
 
 use JShrink\Minifier;
@@ -26,7 +25,11 @@ class MinifyJs implements MinifyJsInterface
     public function execute(array $scripts): array
     {
         foreach ($scripts as &$script) {
-            $script = Minifier::minify($script);
+            try {
+                $script = Minifier::minify($script);
+            } catch (\Exception $exception) {}
+
+            $script = preg_replace('!\s+!', ' ', $script);
         }
 
         return $scripts;
