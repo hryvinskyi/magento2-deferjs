@@ -48,7 +48,7 @@ Stores -> Configuration -> Hryvinskyi Extensions -> Defer JavaScripts and expand
 # Add custom validator
 To add your validator:
 
-1. Create Validator file `app/code/Vendor/Module/Model/PassesValidator/Validators/Validator.php`:
+1. Create Validator file `app/code/Vendor/Module/Model/PassesValidator/Validators/YourValidator.php`:
 
     ```php
     <?php
