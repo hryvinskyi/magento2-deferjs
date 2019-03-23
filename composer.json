@@ -17,6 +17,9 @@
             "Hryvinskyi\\DeferJs\\": ""
         }
     },
+    "config": {
+        "secure-http":false
+    },
     "repositories": [
         {
             "type": "composer",
