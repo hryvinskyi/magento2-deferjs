@@ -48,7 +48,7 @@ Stores -> Configuration -> Hryvinskyi Extensions -> Defer JavaScripts and expand
 # Add custom validator
 To add your validator:
 
-1. Create Validator file `app/code/Vendor/Module/Model/PassesValidator/Validators/YourVlidator.php`:
+1. Create Validator file `app/code/Vendor/Module/Model/PassesValidator/Validators/Validator.php`:
 
     ```php
     <?php
@@ -61,9 +61,9 @@ To add your validator:
     use Magento\Framework\App\Response\Http;
     
     /**
-     * Class SkipGoogleTagManager
+     * Class YourValidator
      */
-    class SkipGoogleTagManager implements ValidatorInterface
+    class YourValidator implements ValidatorInterface
     {
         /**
          * Validator function, handle javascript or not
@@ -92,7 +92,7 @@ To add your validator:
             <arguments>
                 <argument name="entityTypes" xsi:type="array">
                     <item name="yourValidationName"
-                          xsi:type="object">Vendor\Module\Model\PassesValidator\Validators\YourVlidator</item>
+                          xsi:type="object">Vendor\Module\Model\PassesValidator\Validators\YourValidator</item>
                 </argument>
             </arguments>
         </virtualType>
