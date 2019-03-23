@@ -12,7 +12,7 @@ namespace Hryvinskyi\DeferJs\Plugin;
 use Closure;
 use Hryvinskyi\DeferJs\Helper\Config;
 use Hryvinskyi\DeferJs\Model\MoveJsToFooterInterface;
-use Magento\Framework\App\RequestInterface;
+use Magento\Framework\App\Request\Http as RequestHttp;
 use Magento\Framework\App\Response\Http;
 use Magento\Framework\Controller\ResultInterface;
 
@@ -31,7 +31,7 @@ class MoveJsToFooter
     /**
      * Request HTTP
      *
-     * @var RequestInterface
+     * @var RequestHttp
      */
     private $request;
 
@@ -46,12 +46,12 @@ class MoveJsToFooter
      * MoveJsToFooter constructor.
      *
      * @param Config $config
-     * @param RequestInterface $request
+     * @param RequestHttp $request
      * @param MoveJsToFooterInterface $moveJsToFooter
      */
     public function __construct(
         Config $config,
-        RequestInterface $request,
+        RequestHttp $request,
         MoveJsToFooterInterface $moveJsToFooter
     ) {
         $this->config = $config;

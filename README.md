@@ -36,4 +36,70 @@ Stores -> Configuration -> Hryvinskyi Extensions -> Defer JavaScripts and expand
 
 ***Enabled deferred javascript:*** Enable or disable the extension from here.  
 ***Disable move attribute:*** Enter the attribute that will block the move of the script to the bottom.  
-***Enabled minify body scripts:*** Enable script minification.  
+***Enabled minify body scripts:*** Enable script minification.
+
+# Features
+
+- Ability to skip javascripts with a special tag that can be set in the admin panel  
+- Built-in skipping move Google tag manager (If you use a third-party module and can not add a special tag)  
+- Minification of moved javascripts
+- Ability to extend the module with your validator
+
+# Add custom validator
+To add your validator:
+
+1. Create Validator file `app/code/Vendor/Module/Model/PassesValidator/Validators/YourVlidator.php`:
+
+    ```php
+        <?php
+        
+        declare(strict_types=1);
+        
+        namespace Vendor\Module\Model\PassesValidator\Validators;
+        
+        use Hryvinskyi\DeferJs\Model\PassesValidator\ValidatorInterface;
+        use Magento\Framework\App\Response\Http;
+        
+        /**
+         * Class SkipGoogleTagManager
+         */
+        class SkipGoogleTagManager implements ValidatorInterface
+        {
+            /**
+             * Validator function, handle javascript or not
+             *
+             * @param string $script
+             * @param Http $http
+             *
+             * @return bool
+             */
+            public function validate(string $script, Http $http): bool
+            {
+                // Your code validate
+            }
+        }
+    ```
+
+2. Create Dependency Injection file `app/code/Vendor/Module/etc/frontend/di.xml`:
+
+    ```xml
+    <?xml version="1.0"?>
+    
+    <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    
+        <virtualType name="deferJsPassesValidators">
+            <arguments>
+                <argument name="entityTypes" xsi:type="array">
+                    <item name="yourValidationName"
+                          xsi:type="object">Vendor\Module\Model\PassesValidator\Validators\YourVlidator</item>
+                </argument>
+            </arguments>
+        </virtualType>
+    </config>
+    ```
+
+3. Run command:
+    ```
+    php bin/magento setup:di:compile
+    ```

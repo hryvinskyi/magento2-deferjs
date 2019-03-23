@@ -1,0 +1,53 @@
+<?php
+/**
+ * Copyright (c) 2019. Volodymyr Hryvinskyi.  All rights reserved.
+ * @author: <mailto:volodymyr@hryvinskyi.com>
+ * @github: <https://github.com/hryvinskyi>
+ */
+
+declare(strict_types=1);
+
+namespace Hryvinskyi\DeferJs\Model\PassesValidator;
+
+/**
+ * Class EntityList
+ */
+class EntityList
+{
+    /**
+     * @var string[]
+     */
+    private $entityTypes = [];
+
+
+    /**
+     * EntityList constructor.
+     *
+     * @param string[] $entityTypes
+     */
+    public function __construct(
+        $entityTypes = []
+    ) {
+        $this->entityTypes = $entityTypes;
+    }
+
+    /**
+     * Retrieve list of entities
+     *
+     * @return ValidatorInterface[]
+     */
+    public function getList(): array
+    {
+        return $this->entityTypes;
+    }
+
+    /**
+     * @param string $code
+     *
+     * @return ValidatorInterface
+     */
+    public function getEntityByCode(string $code): ValidatorInterface
+    {
+        return $this->entityTypes[$code];
+    }
+}

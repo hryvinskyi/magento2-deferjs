@@ -26,7 +26,7 @@ class Config extends AbstractHelper
 
     /**
      * @param string $scopeType
-     * @param null $scopeCode
+     * @param null|string $scopeCode
      *
      * @return bool
      */
@@ -43,7 +43,7 @@ class Config extends AbstractHelper
 
     /**
      * @param string $scopeType
-     * @param null $scopeCode
+     * @param null|string $scopeCode
      *
      * @return string
      */
@@ -60,7 +60,7 @@ class Config extends AbstractHelper
 
     /**
      * @param string $scopeType
-     * @param null $scopeCode
+     * @param null|string $scopeCode
      *
      * @return bool
      */

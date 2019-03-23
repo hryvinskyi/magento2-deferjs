@@ -10,6 +10,8 @@ declare(strict_types=1);
 namespace Hryvinskyi\DeferJs\Model;
 
 use Hryvinskyi\DeferJs\Helper\Config;
+use Hryvinskyi\DeferJs\Model\Minify\MinifyJsInterface;
+use Hryvinskyi\DeferJs\Model\PassesValidator\ValidateSkipper;
 use Magento\Framework\App\Response\Http;
 
 /**
@@ -28,17 +30,25 @@ class MoveJsToFooter implements MoveJsToFooterInterface
     private $minifyJs;
 
     /**
+     * @var ValidateSkipper
+     */
+    private $validateSkipper;
+
+    /**
      * MoveJsToFooter constructor.
      *
      * @param Config $config
      * @param MinifyJsInterface $minifyJs
+     * @param ValidateSkipper $validateSkipper
      */
     public function __construct(
         Config $config,
-        MinifyJsInterface $minifyJs
+        MinifyJsInterface $minifyJs,
+        ValidateSkipper $validateSkipper
     ) {
         $this->config = $config;
         $this->minifyJs = $minifyJs;
+        $this->validateSkipper = $validateSkipper;
     }
 
     /**
@@ -66,7 +76,7 @@ class MoveJsToFooter implements MoveJsToFooterInterface
             $len = $end + strlen($scriptEnd) - $start;
             $script = substr($html, $start, $len);
 
-            if (stripos($script, $this->config->getDisableAttribute()) !== false) {
+            if ($this->validateSkipper->execute($script, $http)) {
                 $start++;
                 continue;
             }

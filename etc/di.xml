@@ -9,6 +9,6 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Hryvinskyi\DeferJs\Model\MoveJsToFooterInterface"
         type="Hryvinskyi\DeferJs\Model\MoveJsToFooter" />
-    <preference for="Hryvinskyi\DeferJs\Model\MinifyJsInterface"
-        type="Hryvinskyi\DeferJs\Model\MinifyJs" />
+    <preference for="Hryvinskyi\DeferJs\Model\Minify\MinifyJsInterface"
+        type="Hryvinskyi\DeferJs\Model\Minify\MinifyJs" />
 </config>

@@ -11,4 +11,21 @@
         <plugin name="Hryvinskyi_DeferJs::move_js_to_footer"
                 type="Hryvinskyi\DeferJs\Plugin\MoveJsToFooter" sortOrder="10000000" />
     </type>
+
+    <virtualType name="deferJsPassesValidators" type="Hryvinskyi\DeferJs\Model\PassesValidator\EntityList">
+        <arguments>
+            <argument name="entityTypes" xsi:type="array">
+                <item name="skipGoogleTagManager"
+                      xsi:type="object">Hryvinskyi\DeferJs\Model\PassesValidator\Validators\SkipGoogleTagManager</item>
+                <item name="skipScriptByAttribute"
+                      xsi:type="object">Hryvinskyi\DeferJs\Model\PassesValidator\Validators\SkipScriptByAttribute</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Hryvinskyi\DeferJs\Model\PassesValidator\ValidateSkipper">
+        <arguments>
+            <argument name="deferJsPassesValidators" xsi:type="object">deferJsPassesValidators</argument>
+        </arguments>
+    </type>
 </config>
