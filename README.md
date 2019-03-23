@@ -51,33 +51,33 @@ To add your validator:
 1. Create Validator file `app/code/Vendor/Module/Model/PassesValidator/Validators/YourVlidator.php`:
 
     ```php
-        <?php
-        
-        declare(strict_types=1);
-        
-        namespace Vendor\Module\Model\PassesValidator\Validators;
-        
-        use Hryvinskyi\DeferJs\Model\PassesValidator\ValidatorInterface;
-        use Magento\Framework\App\Response\Http;
-        
+    <?php
+    
+    declare(strict_types=1);
+    
+    namespace Vendor\Module\Model\PassesValidator\Validators;
+    
+    use Hryvinskyi\DeferJs\Model\PassesValidator\ValidatorInterface;
+    use Magento\Framework\App\Response\Http;
+    
+    /**
+     * Class SkipGoogleTagManager
+     */
+    class SkipGoogleTagManager implements ValidatorInterface
+    {
         /**
-         * Class SkipGoogleTagManager
+         * Validator function, handle javascript or not
+         *
+         * @param string $script
+         * @param Http $http
+         *
+         * @return bool
          */
-        class SkipGoogleTagManager implements ValidatorInterface
+        public function validate(string $script, Http $http): bool
         {
-            /**
-             * Validator function, handle javascript or not
-             *
-             * @param string $script
-             * @param Http $http
-             *
-             * @return bool
-             */
-            public function validate(string $script, Http $http): bool
-            {
-                // Your code validate
-            }
+            // Your code validate
         }
+    }
     ```
 
 2. Create Dependency Injection file `app/code/Vendor/Module/etc/frontend/di.xml`:
