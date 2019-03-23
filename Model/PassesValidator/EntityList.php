@@ -15,7 +15,7 @@ namespace Hryvinskyi\DeferJs\Model\PassesValidator;
 class EntityList
 {
     /**
-     * @var string[]
+     * @var ValidatorInterface[]
      */
     private $entityTypes = [];
 
@@ -23,7 +23,7 @@ class EntityList
     /**
      * EntityList constructor.
      *
-     * @param string[] $entityTypes
+     * @param ValidatorInterface[] $entityTypes
      */
     public function __construct(
         $entityTypes = []
