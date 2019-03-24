@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace Hryvinskyi\DeferJs\Model\PassesValidator;
 
-use Hryvinskyi\Base\Helper\VarDumper;
 use Magento\Framework\App\Response\Http;
 
 /**
@@ -42,7 +41,7 @@ class ValidateSkipper
     public function execute(string $script, Http $http): bool
     {
         foreach ($this->deferJsPassesValidators->getList() as $deferJsPassesValidator) {
-            if($deferJsPassesValidator->validate($script, $http)) {
+            if ($deferJsPassesValidator->validate($script, $http)) {
                 return true;
             }
         }

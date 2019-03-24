@@ -87,8 +87,7 @@ class MoveJsToFooter implements MoveJsToFooterInterface
             $i++;
         }
 
-
-        if($this->config->isMinifyBodyScript()) {
+        if ($this->config->isMinifyBodyScript()) {
             $scripts = $this->minifyJs->execute($scripts);
         }
 

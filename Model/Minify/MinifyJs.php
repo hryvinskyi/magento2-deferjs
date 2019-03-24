@@ -17,13 +17,6 @@ use JShrink\Minifier;
 class MinifyJs implements MinifyJsInterface
 {
     /**
-     * MinifyJs constructor.
-     */
-    public function __construct() {
-
-    }
-
-    /**
      * @param array $scripts
      *
      * @return array
