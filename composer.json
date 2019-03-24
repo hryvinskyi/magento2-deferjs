@@ -5,6 +5,7 @@
         "php": "~7.1.3||~7.2.0",
         "magento/framework": "*",
         "magento/module-store": "*",
+        "phpunit/phpunit": "~6.5.0",
         "scriptua/magento2-base": "~2.0.0"
     },
     "type": "magento2-module",

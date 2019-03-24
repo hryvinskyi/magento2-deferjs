@@ -4,7 +4,7 @@ The module moves javascripts to the bottom of the page.
 
 ![Packagist](https://img.shields.io/packagist/v/hryvinskyi/magento2-deferjs.svg)
 ![Packagist](https://img.shields.io/packagist/dt/hryvinskyi/magento2-deferjs.svg)
-[![Code Coverage](https://scrutinizer-ci.com/g/hryvinskyi/magento2-deferjs/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/hryvinskyi/magento2-deferjs/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/hryvinskyi/magento2-deferjs/badges/build.png?b=master)](https://scrutinizer-ci.com/g/hryvinskyi/magento2-deferjs/build-status/master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/hryvinskyi/magento2-deferjs/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/hryvinskyi/magento2-deferjs/?branch=master)
 ![Packagist](https://img.shields.io/packagist/vpre/hryvinskyi/magento2-deferjs.svg)
 ![Packagist](https://img.shields.io/packagist/l/hryvinskyi/magento2-deferjs.svg)
