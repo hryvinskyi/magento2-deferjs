@@ -2,12 +2,14 @@
 
 The module moves javascripts to the bottom of the page.
 
-![Packagist](https://img.shields.io/packagist/v/hryvinskyi/magento2-deferjs.svg)
-![Packagist](https://img.shields.io/packagist/dt/hryvinskyi/magento2-deferjs.svg)
-[![Build Status](https://scrutinizer-ci.com/g/hryvinskyi/magento2-deferjs/badges/build.png?b=master)](https://scrutinizer-ci.com/g/hryvinskyi/magento2-deferjs/build-status/master)
+[![Latest Stable Version](https://poser.pugx.org/hryvinskyi/magento2-deferjs/v/stable)](https://packagist.org/packages/hryvinskyi/magento2-deferjs)
+[![Total Downloads](https://poser.pugx.org/hryvinskyi/magento2-deferjs/downloads)](https://packagist.org/packages/hryvinskyi/magento2-deferjs)
+[![PayPal donate button](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=legionerblack%40yandex%2eru&lc=UA&item_name=oakcms&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted "Donate once-off to this project using Paypal")
+[![Latest Unstable Version](https://poser.pugx.org/hryvinskyi/magento2-deferjs/v/unstable)](https://packagist.org/packages/oakcms/oakcms)
+[![License](https://poser.pugx.org/hryvinskyi/magento2-deferjs/license)](https://packagist.org/packages/hryvinskyi/magento2-deferjs)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/hryvinskyi/magento2-deferjs/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/hryvinskyi/magento2-deferjs/?branch=master)
-![Packagist](https://img.shields.io/packagist/vpre/hryvinskyi/magento2-deferjs.svg)
-![Packagist](https://img.shields.io/packagist/l/hryvinskyi/magento2-deferjs.svg)
+[![Build Status](https://scrutinizer-ci.com/g/hryvinskyi/magento2-deferjs/badges/build.png?b=master)](https://scrutinizer-ci.com/g/hryvinskyi/magento2-deferjs/build-status/master)
+
 
 # Installation Guide
 ### Install by composer
