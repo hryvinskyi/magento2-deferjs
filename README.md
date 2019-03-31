@@ -40,10 +40,13 @@ Stores -> Configuration -> Hryvinskyi Extensions -> Defer JavaScripts and expand
 
 # Features
 
-- Ability to skip javascripts with a special tag that can be set in the admin panel  
-- Built-in skipping move Google tag manager (If you use a third-party module and can not add a special tag)  
+- Ability to skip javascripts with a special tag that can be set in the admin panel
+- Built-in skipping move Google tag manager (If you use a third-party module and can not add a special tag)
+- Exclude Magento controllers from defer parsing of JavaScript.
+- Exclude Magento store paths from defer parsing of JavaScript.
 - Minification of moved javascripts
 - Ability to extend the module with your validator
+- Increased rendering time improves the Google Page Speed score.
 
 # Add custom validator
 To add your validator:

@@ -19,6 +19,12 @@
                       xsi:type="object">Hryvinskyi\DeferJs\Model\PassesValidator\Validators\SkipGoogleTagManager</item>
                 <item name="skipScriptByAttribute"
                       xsi:type="object">Hryvinskyi\DeferJs\Model\PassesValidator\Validators\SkipScriptByAttribute</item>
+                <item name="skipScriptsByController"
+                      xsi:type="object">Hryvinskyi\DeferJs\Model\PassesValidator\Validators\SkipScriptsByController
+                </item>
+                <item name="skipScriptsByPath"
+                      xsi:type="object">Hryvinskyi\DeferJs\Model\PassesValidator\Validators\SkipScriptsByPath
+                </item>
             </argument>
         </arguments>
     </virtualType>

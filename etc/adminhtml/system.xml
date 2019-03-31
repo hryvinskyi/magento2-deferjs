@@ -34,6 +34,23 @@
                         <field id="*/*/enabled">1</field>
                     </depends>
                 </field>
+                <field id="exclude_controllers" showInDefault="1" showInWebsite="1" sortOrder="40"
+                       translate="label comment">
+                    <label>Exclude controllers</label>
+                    <frontend_model>\Hryvinskyi\DeferJs\Block\Adminhtml\System\ExcludeControllers</frontend_model>
+                    <backend_model>\Hryvinskyi\DeferJs\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                    <comment>Controller will be unaffected by defer js. Use like: [module]_[controller]_[action]
+                        (Example: cms_index_index)
+                    </comment>
+                </field>
+                <field id="exclude_paths" showInDefault="1" showInWebsite="1" sortOrder="50"
+                       translate="label comment">
+                    <label>Exclude Paths</label>
+                    <frontend_model>\Hryvinskyi\DeferJs\Block\Adminhtml\System\ExcludePaths</frontend_model>
+                    <backend_model>\Hryvinskyi\DeferJs\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                    <comment>Paths will be unaffected by defer js. Use like: /women/tops-women/jackets-women.html
+                    </comment>
+                </field>
             </group>
         </section>
     </system>
