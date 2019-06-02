@@ -19,7 +19,6 @@ class EntityList
      */
     private $entityTypes = [];
 
-
     /**
      * EntityList constructor.
      *
