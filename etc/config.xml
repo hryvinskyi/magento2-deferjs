@@ -15,6 +15,7 @@
                 <minify_body_scripts>0</minify_body_scripts>
                 <exclude_controllers><![CDATA[[]]]></exclude_controllers>
                 <exclude_paths><![CDATA[[]]]></exclude_paths>
+                <exclude_url_pattern><![CDATA[[]]]></exclude_url_pattern>
             </general>
         </hryvinskyi_defer_js>
     </default>

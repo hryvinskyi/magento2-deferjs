@@ -25,6 +25,7 @@ class Config extends AbstractHelper
     const XML_HRYVINSKYI_DEFER_JS_MINIFY_BODY_SCRIPTS = 'hryvinskyi_defer_js/general/minify_body_scripts';
     const XML_HRYVINSKYI_DEFER_JS_EXCLUDE_CONTROLLERS = 'hryvinskyi_defer_js/general/exclude_controllers';
     const XML_HRYVINSKYI_DEFER_JS_EXCLUDE_PATHS = 'hryvinskyi_defer_js/general/exclude_paths';
+    const XML_HRYVINSKYI_DEFER_JS_EXCLUDE_URL_PATTERN = 'hryvinskyi_defer_js/general/exclude_url_pattern';
 
     /**
      * @param string $scopeType
@@ -33,7 +34,7 @@ class Config extends AbstractHelper
      * @return bool
      */
     public function isEnabled(
-        string $scopeType = ScopeInterface::SCOPE_WEBSITE,
+        string $scopeType = ScopeInterface::SCOPE_STORE,
         $scopeCode = null
     ): bool {
         return $this->scopeConfig->isSetFlag(
@@ -50,10 +51,10 @@ class Config extends AbstractHelper
      * @return string
      */
     public function getDisableAttribute(
-        string $scopeType = ScopeInterface::SCOPE_WEBSITE,
+        string $scopeType = ScopeInterface::SCOPE_STORE,
         $scopeCode = null
     ): string {
-        return $this->scopeConfig->getValue(
+        return (string)$this->scopeConfig->getValue(
             self::XML_HRYVINSKYI_DEFER_JS_DISABLE_ATTRIBUTE,
             $scopeType,
             $scopeCode
@@ -67,7 +68,7 @@ class Config extends AbstractHelper
      * @return bool
      */
     public function isMinifyBodyScript(
-        string $scopeType = ScopeInterface::SCOPE_WEBSITE,
+        string $scopeType = ScopeInterface::SCOPE_STORE,
         $scopeCode = null
     ): bool {
         return $this->scopeConfig->isSetFlag(
@@ -86,10 +87,10 @@ class Config extends AbstractHelper
      * @return string
      */
     public function getExcludeControllers(
-        string $scopeType = ScopeInterface::SCOPE_WEBSITE,
+        string $scopeType = ScopeInterface::SCOPE_STORE,
         $scopeCode = null
     ): string {
-        return $this->scopeConfig->getValue(
+        return (string)$this->scopeConfig->getValue(
             self::XML_HRYVINSKYI_DEFER_JS_EXCLUDE_CONTROLLERS,
             $scopeType,
             $scopeCode
@@ -105,11 +106,30 @@ class Config extends AbstractHelper
      * @return string
      */
     public function getExcludePaths(
-        string $scopeType = ScopeInterface::SCOPE_WEBSITE,
+        string $scopeType = ScopeInterface::SCOPE_STORE,
         $scopeCode = null
     ): string {
-        return $this->scopeConfig->getValue(
+        return (string)$this->scopeConfig->getValue(
             self::XML_HRYVINSKYI_DEFER_JS_EXCLUDE_PATHS,
+            $scopeType,
+            $scopeCode
+        );
+    }
+
+    /**
+     * Return Excluded URL pattern
+     *
+     * @param string $scopeType
+     * @param null|string $scopeCode
+     *
+     * @return string
+     */
+    public function getExcludeUrlPattern(
+        string $scopeType = ScopeInterface::SCOPE_STORE,
+        $scopeCode = null
+    ): string {
+        return (string)$this->scopeConfig->getValue(
+            self::XML_HRYVINSKYI_DEFER_JS_EXCLUDE_URL_PATTERN,
             $scopeType,
             $scopeCode
         );

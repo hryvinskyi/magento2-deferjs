@@ -23,6 +23,8 @@
                       xsi:type="object">Hryvinskyi\DeferJs\Model\PassesValidator\Validators\SkipScriptsByController</item>
                 <item name="skipScriptsByPath"
                       xsi:type="object">Hryvinskyi\DeferJs\Model\PassesValidator\Validators\SkipScriptsByPath</item>
+                <item name="SkipScriptsByURLPattern"
+                      xsi:type="object">Hryvinskyi\DeferJs\Model\PassesValidator\Validators\SkipScriptsByURLPattern</item>
             </argument>
         </arguments>
     </virtualType>

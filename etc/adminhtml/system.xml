@@ -8,24 +8,25 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <section id="hryvinskyi_defer_js" showInDefault="1" showInWebsite="1" sortOrder="10" translate="label">
+        <section id="hryvinskyi_defer_js" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10"
+                 translate="label">
             <label>Defer JavaScripts</label>
             <tab>hryvinskyi</tab>
             <resource>Hryvinskyi_DeferJs::defer_js</resource>
-            <group id="general" showInDefault="1" showInWebsite="1" sortOrder="10" translate="label">
+            <group id="general" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10" translate="label">
                 <label>General Settings</label>
-                <field id="enabled" showInDefault="1" showInWebsite="1" sortOrder="20" translate="label" type="select">
+                <field id="enabled" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="20" translate="label" type="select">
                     <label>Enabled deferred javascript</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="disable_attribute" showInDefault="1" showInWebsite="1" sortOrder="30" translate="label"
-                       type="text">
+                <field id="disable_attribute" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30"
+                       translate="label" type="text">
                     <label>Disable move attribute</label>
                     <depends>
                         <field id="*/*/enabled">1</field>
                     </depends>
                 </field>
-                <field id="minify_body_scripts" showInDefault="1" showInWebsite="1" sortOrder="30"
+                <field id="minify_body_scripts" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30"
                        translate="label comment" type="select">
                     <label>Enabled minify body scripts</label>
                     <comment>Only JavaScript in the body of the page</comment>
@@ -34,7 +35,7 @@
                         <field id="*/*/enabled">1</field>
                     </depends>
                 </field>
-                <field id="exclude_controllers" showInDefault="1" showInWebsite="1" sortOrder="40"
+                <field id="exclude_controllers" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40"
                        translate="label comment">
                     <label>Exclude controllers</label>
                     <frontend_model>\Hryvinskyi\DeferJs\Block\Adminhtml\System\ExcludeControllers</frontend_model>
@@ -43,12 +44,26 @@
                         (Example: cms_index_index)
                     </comment>
                 </field>
-                <field id="exclude_paths" showInDefault="1" showInWebsite="1" sortOrder="50"
+                <field id="exclude_paths" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="50"
                        translate="label comment">
                     <label>Exclude Paths</label>
                     <frontend_model>\Hryvinskyi\DeferJs\Block\Adminhtml\System\ExcludePaths</frontend_model>
                     <backend_model>\Hryvinskyi\DeferJs\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
                     <comment>Paths will be unaffected by defer js. Use like: /women/tops-women/jackets-women.html
+                    </comment>
+                </field>
+                <field id="exclude_url_pattern" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="60"
+                       translate="label comment">
+                    <label>Exclude Url Pattern</label>
+                    <frontend_model>\Hryvinskyi\DeferJs\Block\Adminhtml\System\ExcludeUrlPattern</frontend_model>
+                    <backend_model>\Hryvinskyi\DeferJs\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                    <comment>
+                        <![CDATA[URL pattern can be a full action name or a request path. Wildcards are allowed. Like:
+                        <pre><code>*cell-phones*
+*cell-phones/nokia-2610-phone.html
+customer_account_*
+/customer/account/*
+*?mode=list</code></pre>]]>
                     </comment>
                 </field>
             </group>
