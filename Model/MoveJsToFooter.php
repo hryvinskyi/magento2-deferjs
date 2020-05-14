@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace Hryvinskyi\DeferJs\Model;
 
+use Hryvinskyi\Base\Helper\ArrayHelper;
+use Hryvinskyi\Base\Helper\Json;
 use Hryvinskyi\DeferJs\Helper\Config;
 use Hryvinskyi\DeferJs\Model\Minify\MinifyJsInterface;
 use Hryvinskyi\DeferJs\Model\PassesValidator\ValidateSkipper;
@@ -61,6 +63,7 @@ class MoveJsToFooter implements MoveJsToFooterInterface
         $scripts = [];
         $html = $http->getBody();
 
+        $jsons = [];
         $scriptStart = '<script';
         $scriptEnd = '</script>';
 
@@ -75,6 +78,15 @@ class MoveJsToFooter implements MoveJsToFooterInterface
 
             $len = $end + strlen($scriptEnd) - $start;
             $script = substr($html, $start, $len);
+
+            if (
+                $this->config->isOptimizeXMagentoInitScripts() &&
+                strpos($script, 'text/x-magento-init') !== false
+            ) {
+                $jsons[] = strip_tags($script);
+                $html = str_replace($script, '', $html);
+                continue;
+            }
 
             if ($this->validateSkipper->execute($script, $http)) {
                 $start++;
@@ -91,12 +103,24 @@ class MoveJsToFooter implements MoveJsToFooterInterface
             $scripts = $this->minifyJs->execute($scripts);
         }
 
+        $merged = [];
+        foreach ($jsons as $json) {
+            $json = Json::decode($json);
+            $merged = ArrayHelper::merge($merged, $json);
+        }
+
+        if (count($merged) > 0) {
+            $merged = '<script type=text/x-magento-init>' . Json::encode($merged) . '</script>';
+        } else {
+            $merged = '';
+        }
+
         $scripts = implode('', $scripts);
 
         if ($endBody = stripos($html, '</body>')) {
-            $html = substr($html, 0, $endBody) . $scripts . substr($html, $endBody);
+            $html = substr($html, 0, $endBody) . $merged . $scripts . substr($html, $endBody);
         } else {
-            $html .= $scripts;
+            $html .= $merged . $scripts;
         }
 
         $http->setBody($html);

@@ -12,7 +12,8 @@
             <general>
                 <enabled>0</enabled>
                 <disable_attribute><![CDATA[data-deferjs="false"]]></disable_attribute>
-                <minify_body_scripts>0</minify_body_scripts>
+                <minify_body_scripts>1</minify_body_scripts>
+                <optimize_x_magento_init_scripts>1</optimize_x_magento_init_scripts>
                 <exclude_controllers><![CDATA[[]]]></exclude_controllers>
                 <exclude_paths><![CDATA[[]]]></exclude_paths>
                 <exclude_url_pattern><![CDATA[[]]]></exclude_url_pattern>

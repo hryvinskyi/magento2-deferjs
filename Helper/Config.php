@@ -23,6 +23,8 @@ class Config extends AbstractHelper
     const XML_HRYVINSKYI_DEFER_JS_GENERAL_ENABLED = 'hryvinskyi_defer_js/general/enabled';
     const XML_HRYVINSKYI_DEFER_JS_DISABLE_ATTRIBUTE = 'hryvinskyi_defer_js/general/disable_attribute';
     const XML_HRYVINSKYI_DEFER_JS_MINIFY_BODY_SCRIPTS = 'hryvinskyi_defer_js/general/minify_body_scripts';
+    const XML_HRYVINSKYI_DEFER_JS_OPTIMIZE_X_MAGENTO_INIT_SCRIPTS
+        = 'hryvinskyi_defer_js/general/optimize_x_magento_init_scripts';
     const XML_HRYVINSKYI_DEFER_JS_EXCLUDE_CONTROLLERS = 'hryvinskyi_defer_js/general/exclude_controllers';
     const XML_HRYVINSKYI_DEFER_JS_EXCLUDE_PATHS = 'hryvinskyi_defer_js/general/exclude_paths';
     const XML_HRYVINSKYI_DEFER_JS_EXCLUDE_URL_PATTERN = 'hryvinskyi_defer_js/general/exclude_url_pattern';
@@ -73,6 +75,23 @@ class Config extends AbstractHelper
     ): bool {
         return $this->scopeConfig->isSetFlag(
             self::XML_HRYVINSKYI_DEFER_JS_MINIFY_BODY_SCRIPTS,
+            $scopeType,
+            $scopeCode
+        );
+    }
+
+    /**
+     * @param string $scopeType
+     * @param null|string $scopeCode
+     *
+     * @return bool
+     */
+    public function isOptimizeXMagentoInitScripts(
+        string $scopeType = ScopeInterface::SCOPE_STORE,
+        $scopeCode = null
+    ): bool {
+        return $this->scopeConfig->isSetFlag(
+            self::XML_HRYVINSKYI_DEFER_JS_OPTIMIZE_X_MAGENTO_INIT_SCRIPTS,
             $scopeType,
             $scopeCode
         );
