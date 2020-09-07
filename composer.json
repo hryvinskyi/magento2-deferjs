@@ -11,7 +11,7 @@
         "phpunit/phpunit": "~6.5.0"
     },
     "type": "magento2-module",
-    "version": "1.1.7",
+    "version": "1.2.0",
     "license": "MIT",
     "autoload": {
         "files": [
