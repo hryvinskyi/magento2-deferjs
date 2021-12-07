@@ -32,6 +32,8 @@ class MinifyJs implements MinifyJsInterface
                 $script = preg_replace("/[^:']\/\/.*/", '', $script);
             }
 
+            $script = str_replace('src=', ' src=', $script);
+            $script = str_replace('type=', ' type=', $script);
             $script = preg_replace('!\s+!', ' ', $script);
         }
 
