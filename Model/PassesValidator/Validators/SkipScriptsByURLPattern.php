@@ -1,8 +1,8 @@
 <?php
 /**
- * Copyright (c) 2020. Volodymyr Hryvinskyi.  All rights reserved.
- * @author: <mailto:volodymyr@hryvinskyi.com>
- * @github: <https://github.com/hryvinskyi>
+ * Copyright (c) 2020-2025. Volodymyr Hryvinskyi. All rights reserved.
+ * Author: Volodymyr Hryvinskyi <volodymyr@hryvinskyi.com>
+ * GitHub: https://github.com/hryvinskyi
  */
 
 declare(strict_types=1);
@@ -71,56 +71,19 @@ class SkipScriptsByURLPattern implements ValidatorInterface
     }
 
     /**
-     * @param $string
-     * @param $pattern
+     * Check if a string matches a wildcard pattern
      *
-     * @return bool
+     * @param string $string The string to check
+     * @param string $pattern The wildcard pattern (using * as wildcard)
+     * @return bool True if the string matches the pattern
      */
     public function checkPattern(string $string, string $pattern): bool
     {
-        $parts = explode('*', $pattern);
-        $index = 0;
+        // Convert wildcard pattern to regex
+        $regex = preg_quote($pattern, '/');
+        $regex = str_replace('\*', '.*', $regex);
+        $regex = '/^' . $regex . '$/';
 
-        $shouldBeFirst = true;
-
-        foreach ($parts as $part) {
-            if ($part == '') {
-                $shouldBeFirst = false;
-                continue;
-            }
-
-            $index = strpos($string, $part, $index);
-
-            if ($index === false) {
-                return false;
-            }
-
-            if ($shouldBeFirst && $index > 0) {
-                return false;
-            }
-
-            $shouldBeFirst = false;
-            $index += strlen($part);
-        }
-
-        if (count($parts) == 1) {
-            return $string == $pattern;
-        }
-
-        $last = end($parts);
-
-        if ($last == '') {
-            return true;
-        }
-
-        if (strrpos($string, $last) === false) {
-            return false;
-        }
-
-        if (strlen($string) - strlen($last) - strrpos($string, $last) > 0) {
-            return false;
-        }
-
-        return true;
+        return (bool)preg_match($regex, $string);
     }
 }
