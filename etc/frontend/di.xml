@@ -34,4 +34,7 @@
             <argument name="deferJsPassesValidators" xsi:type="object">deferJsPassesValidators</argument>
         </arguments>
     </type>
+    <type name="Magento\Framework\View\Result\Layout">
+        <plugin name="deferJsToFooter" disabled="true"/>
+    </type>
 </config>
