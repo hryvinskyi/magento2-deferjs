@@ -9,6 +9,7 @@ The module moves javascripts to the bottom of the page.
 [![License](https://poser.pugx.org/hryvinskyi/magento2-deferjs/license)](https://packagist.org/packages/hryvinskyi/magento2-deferjs)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/hryvinskyi/magento2-deferjs/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/hryvinskyi/magento2-deferjs/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/hryvinskyi/magento2-deferjs/badges/build.png?b=master)](https://scrutinizer-ci.com/g/hryvinskyi/magento2-deferjs/build-status/master)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fhryvinskyi%2Fmagento2-deferjs.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fhryvinskyi%2Fmagento2-deferjs?ref=badge_shield)
 
 
 # Installation Guide
@@ -128,3 +129,7 @@ To add your validator:
     ```
     php bin/magento setup:di:compile
     ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fhryvinskyi%2Fmagento2-deferjs.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fhryvinskyi%2Fmagento2-deferjs?ref=badge_large)
