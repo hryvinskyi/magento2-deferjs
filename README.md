@@ -10,6 +10,43 @@ The module moves javascripts to the bottom of the page.
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/hryvinskyi/magento2-deferjs/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/hryvinskyi/magento2-deferjs/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/hryvinskyi/magento2-deferjs/badges/build.png?b=master)](https://scrutinizer-ci.com/g/hryvinskyi/magento2-deferjs/build-status/master)
 
+# Why this module
+
+Magento has its own switch for this, *Stores → Configuration → Advanced → Developer → JavaScript Settings →
+Move JS code to the bottom of the page* (`dev/js/move_script_to_bottom`). This module does the same job faster,
+without losing scripts, and with control over what stays where.
+
+## Performance
+
+Time to move the scripts of real storefront pages (Magento 2.4.6, PHP 8.1, best of 5 × 200 runs):
+
+| Page | Size | Scripts | Magento built-in | 1.3.3 | 2.0.0 |
+|---|---|---|---|---|---|
+| Home | 389 KB | 95 | 2.47 ms | 1.25 ms | **0.16 ms** |
+| Category | 481 KB | 110 | 3.45 ms | 1.61 ms | **0.18 ms** |
+| Product | 559 KB | 121 | 4.68 ms | 1.90 ms | **0.21 ms** |
+
+2.0.0 is 15–22 times faster than the built-in option and 8–9 times faster than 1.3.3. The page is scanned once
+with plain string search and rebuilt once from the parts that stay. The built-in option and 1.3.3 copy the whole
+page for every script they move. Page exclusions are decided once per request, and an excluded page is not
+scanned at all.
+
+The work happens only when a page is rendered, that is on a full-page-cache miss. Cached pages never reach it.
+
+## Compared with Magento's built-in option
+
+| | Magento built-in | This module |
+|---|---|---|
+| Identical script tags | All copies are cut out and only one is added back, so repeated scripts are lost (one script was lost on the category page measured above) | Every tag is kept, in its order |
+| Keep a script in place | Only `text/x-magento-template` | An attribute of your choice (`data-deferjs="false"` by default), Google Tag Manager built in, and your own rules |
+| Leave a page alone | Not possible | By controller, by path, by URL pattern, and your own rules |
+| Extension points | None | `ScriptExclusionInterface` and `PageExclusionInterface` pools, added from `di.xml` |
+| Where it is configured | The Developer section, which the admin hides in production mode | Its own section, available in every mode |
+| Minify moved inline scripts | No | Optional, inline JavaScript only, and the original is kept when the result would break the tag |
+| Merge `text/x-magento-init` scripts | No | Optional |
+
+Use one or the other: leave the built-in option off while this module is enabled.
+
 
 # Installation Guide
 ### Install by composer
@@ -72,7 +109,7 @@ sort order `10000000`), so the page is rewritten before any later plugin stores 
 - Minification of moved inline javascripts
 - Optimize text/x-magento-init scripts
 - Ability to extend the module with your own script and page exclusions
-- Increased rendering time improves the Google Page Speed score.
+- The browser renders the content before it loads the scripts, which improves the Google Page Speed score.
 
 # Extending the module
 
