@@ -1,14 +1,64 @@
 <?xml version="1.0"?>
 <!--
-  ~ Copyright (c) 2019. Volodymyr Hryvinskyi.  All rights reserved.
-  ~ @author: <mailto:volodymyr@hryvinskyi.com>
-  ~ @github: <https://github.com/hryvinskyi>
+  ~ Copyright (c) 2019-2026. Volodymyr Hryvinskyi. All rights reserved.
+  ~ Author: Volodymyr Hryvinskyi <volodymyr@hryvinskyi.com>
+  ~ GitHub: https://github.com/hryvinskyi
   -->
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="Hryvinskyi\DeferJs\Model\MoveJsToFooterInterface"
-        type="Hryvinskyi\DeferJs\Model\MoveJsToFooter" />
-    <preference for="Hryvinskyi\DeferJs\Model\Minify\MinifyJsInterface"
-        type="Hryvinskyi\DeferJs\Model\Minify\MinifyJs" />
+    <preference for="Hryvinskyi\DeferJs\Api\DeferPageScriptsInterface"
+                type="Hryvinskyi\DeferJs\Model\DeferPageScripts" />
+
+    <preference for="Hryvinskyi\DeferJs\Api\ConfigInterface"
+                type="Hryvinskyi\DeferJs\Model\Config" />
+    <preference for="Hryvinskyi\DeferJs\Api\PageExclusionInterface"
+                type="Hryvinskyi\DeferJs\Model\PageExclusion\PageExclusionPool" />
+    <preference for="Hryvinskyi\DeferJs\Api\ScriptExclusionInterface"
+                type="Hryvinskyi\DeferJs\Model\ScriptExclusion\ScriptExclusionPool" />
+
+    <preference for="Hryvinskyi\DeferJs\Api\ScriptRelocatorInterface"
+                type="Hryvinskyi\DeferJs\Model\ScriptRelocator" />
+    <preference for="Hryvinskyi\DeferJs\Api\XMagentoInitMergerInterface"
+                type="Hryvinskyi\DeferJs\Model\XMagentoInit\Merger" />
+    <preference for="Hryvinskyi\DeferJs\Api\ScriptMinifierInterface"
+                type="Hryvinskyi\DeferJs\Model\Minify\ScriptMinifier" />
+    <preference for="Hryvinskyi\DeferJs\Api\ScriptTagReaderInterface"
+                type="Hryvinskyi\DeferJs\Model\ScriptTag\ScriptTagReader" />
+    <preference for="Hryvinskyi\DeferJs\Model\Minify\JavaScriptMinifierInterface"
+                type="Hryvinskyi\DeferJs\Model\Minify\JShrinkMinifier" />
+
+    <type name="Hryvinskyi\DeferJs\Model\Config">
+        <arguments>
+            <argument name="serializer" xsi:type="object">Magento\Framework\Serialize\Serializer\Json</argument>
+        </arguments>
+    </type>
+
+    <!--
+        The exclusion pools are declared here, in the global scope, so that a module can add an item from its own
+        global etc/di.xml. An area di.xml that names the same argument replaces the whole array instead of
+        adding to it, which would drop these defaults.
+    -->
+    <type name="Hryvinskyi\DeferJs\Model\PageExclusion\PageExclusionPool">
+        <arguments>
+            <argument name="exclusions" xsi:type="array">
+                <item name="excludedControllers"
+                      xsi:type="object">Hryvinskyi\DeferJs\Model\PageExclusion\ExcludedControllers</item>
+                <item name="excludedPaths"
+                      xsi:type="object">Hryvinskyi\DeferJs\Model\PageExclusion\ExcludedPaths</item>
+                <item name="excludedUrlPatterns"
+                      xsi:type="object">Hryvinskyi\DeferJs\Model\PageExclusion\ExcludedUrlPatterns</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Hryvinskyi\DeferJs\Model\ScriptExclusion\ScriptExclusionPool">
+        <arguments>
+            <argument name="exclusions" xsi:type="array">
+                <item name="googleTagManager"
+                      xsi:type="object">Hryvinskyi\DeferJs\Model\ScriptExclusion\GoogleTagManager</item>
+                <item name="disableAttribute"
+                      xsi:type="object">Hryvinskyi\DeferJs\Model\ScriptExclusion\DisableAttribute</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

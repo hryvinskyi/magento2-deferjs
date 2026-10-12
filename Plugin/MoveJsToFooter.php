@@ -1,83 +1,49 @@
 <?php
 /**
- * Copyright (c) 2019. Volodymyr Hryvinskyi.  All rights reserved.
- * @author: <mailto:volodymyr@hryvinskyi.com>
- * @github: <https://github.com/hryvinskyi>
+ * Copyright (c) 2019-2026. Volodymyr Hryvinskyi. All rights reserved.
+ * Author: Volodymyr Hryvinskyi <volodymyr@hryvinskyi.com>
+ * GitHub: https://github.com/hryvinskyi
  */
 
 declare(strict_types=1);
 
 namespace Hryvinskyi\DeferJs\Plugin;
 
-use Closure;
-use Hryvinskyi\DeferJs\Helper\Config;
-use Hryvinskyi\DeferJs\Model\MoveJsToFooterInterface;
-use Magento\Framework\App\Request\Http as RequestHttp;
-use Magento\Framework\App\Response\Http;
+use Hryvinskyi\DeferJs\Api\DeferPageScriptsInterface;
+use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\ResultInterface;
 
 /**
- * Class MoveJsToFooter
+ * Moves the scripts of a rendered result's page to the end of its body.
+ *
+ * It wraps the render rather than following it because the page must be rewritten before anything that stores
+ * the rendered response sees it: every after-plugin ordered below this one runs only once this one returns.
  */
 class MoveJsToFooter
 {
     /**
-     * Configuration Module
-     *
-     * @var Config
-     */
-    private $config;
-
-    /**
-     * Request HTTP
-     *
-     * @var RequestHttp
-     */
-    private $request;
-
-    /**
-     * Mover Js
-     *
-     * @var MoveJsToFooterInterface
-     */
-    private $moveJsToFooter;
-
-    /**
-     * MoveJsToFooter constructor.
-     *
-     * @param Config $config
-     * @param RequestHttp $request
-     * @param MoveJsToFooterInterface $moveJsToFooter
+     * @param DeferPageScriptsInterface $deferPageScripts rewrites the rendered page
      */
     public function __construct(
-        Config $config,
-        RequestHttp $request,
-        MoveJsToFooterInterface $moveJsToFooter
+        private readonly DeferPageScriptsInterface $deferPageScripts
     ) {
-        $this->config = $config;
-        $this->request = $request;
-        $this->moveJsToFooter = $moveJsToFooter;
     }
 
     /**
-     * @param ResultInterface $subject
-     * @param Closure $proceed
-     * @param Http $response
+     * Render the result, then move the scripts of the page it rendered into the response.
      *
-     * @return string
+     * @param ResultInterface $subject the result being rendered
+     * @param \Closure $proceed renders the result into the response
+     * @param ResponseInterface $response the response the result renders into
+     * @return mixed the value the render returned, unchanged
      */
     public function aroundRenderResult(
         ResultInterface $subject,
-        Closure $proceed,
-        Http $response
-    ) {
+        \Closure $proceed,
+        ResponseInterface $response
+    ): mixed {
         $result = $proceed($response);
-
-        if (!$this->config->isEnabled() || PHP_SAPI === 'cli' || $this->request->isXmlHttpRequest()) {
-            return $result;
-        }
-
-        $this->moveJsToFooter->execute($response);
+        $this->deferPageScripts->execute($response);
 
         return $result;
     }

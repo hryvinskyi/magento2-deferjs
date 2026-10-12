@@ -1,8 +1,8 @@
 <?php
 /**
- * Copyright (c) 2019. Volodymyr Hryvinskyi.  All rights reserved.
- * @author: <mailto:volodymyr@hryvinskyi.com>
- * @github: <https://github.com/hryvinskyi>
+ * Copyright (c) 2019-2026. Volodymyr Hryvinskyi. All rights reserved.
+ * Author: Volodymyr Hryvinskyi <volodymyr@hryvinskyi.com>
+ * GitHub: https://github.com/hryvinskyi
  */
 
 declare(strict_types=1);
@@ -12,21 +12,22 @@ namespace Hryvinskyi\DeferJs\Block\Adminhtml\System;
 use Magento\Config\Block\System\Config\Form\Field\FieldArray\AbstractFieldArray;
 
 /**
- * Class ExcludeControllers
+ * Admin rows of full action names (`<module>_<controller>_<action>`) whose pages keep their scripts in place.
  */
 class ExcludeControllers extends AbstractFieldArray
 {
     /**
+     * Declare the single `controller` column without a per-row "Add after" button.
+     *
      * @return void
      */
-    protected function _construct()
+    protected function _construct(): void
     {
         $this->addColumn('controller', [
             'label' => __('Expression'),
         ]);
 
         $this->_addAfter = false;
-        $this->_addButtonLabel = __('Add');
 
         parent::_construct();
     }

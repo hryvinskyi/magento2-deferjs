@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <!--
-  ~ Copyright (c) 2019. Volodymyr Hryvinskyi.  All rights reserved.
-  ~ @author: <mailto:volodymyr@hryvinskyi.com>
-  ~ @github: <https://github.com/hryvinskyi>
+  ~ Copyright (c) 2019-2026. Volodymyr Hryvinskyi. All rights reserved.
+  ~ Author: Volodymyr Hryvinskyi <volodymyr@hryvinskyi.com>
+  ~ GitHub: https://github.com/hryvinskyi
   -->
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -10,29 +10,6 @@
     <type name="Magento\Framework\Controller\ResultInterface">
         <plugin name="Hryvinskyi_DeferJs::move_js_to_footer"
                 type="Hryvinskyi\DeferJs\Plugin\MoveJsToFooter" sortOrder="10000000" />
-    </type>
-
-    <virtualType name="deferJsPassesValidators" type="Hryvinskyi\DeferJs\Model\PassesValidator\EntityList">
-        <arguments>
-            <argument name="entityTypes" xsi:type="array">
-                <item name="skipGoogleTagManager"
-                      xsi:type="object">Hryvinskyi\DeferJs\Model\PassesValidator\Validators\SkipGoogleTagManager</item>
-                <item name="skipScriptByAttribute"
-                      xsi:type="object">Hryvinskyi\DeferJs\Model\PassesValidator\Validators\SkipScriptByAttribute</item>
-                <item name="skipScriptsByController"
-                      xsi:type="object">Hryvinskyi\DeferJs\Model\PassesValidator\Validators\SkipScriptsByController</item>
-                <item name="skipScriptsByPath"
-                      xsi:type="object">Hryvinskyi\DeferJs\Model\PassesValidator\Validators\SkipScriptsByPath</item>
-                <item name="SkipScriptsByURLPattern"
-                      xsi:type="object">Hryvinskyi\DeferJs\Model\PassesValidator\Validators\SkipScriptsByURLPattern</item>
-            </argument>
-        </arguments>
-    </virtualType>
-
-    <type name="Hryvinskyi\DeferJs\Model\PassesValidator\ValidateSkipper">
-        <arguments>
-            <argument name="deferJsPassesValidators" xsi:type="object">deferJsPassesValidators</argument>
-        </arguments>
     </type>
     <type name="Magento\Framework\View\Result\Layout">
         <plugin name="deferJsToFooter" disabled="true"/>
